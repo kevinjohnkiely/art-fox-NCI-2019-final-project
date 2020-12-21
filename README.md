@@ -1,24 +1,3 @@
 # README - Art Fox Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This project was completed as part of my Postgrad Web Technologies course at National College of Ireland, December 2019. It is a full CRUD application, built using Ruby on Rails.

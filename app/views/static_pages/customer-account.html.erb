@@ -1,0 +1,63 @@
+<% provide(:title, "Your Customer Account") %>
+
+<div class="w3-col m6 w3-center w3-padding-large">
+  
+  <h1 class="w3-center">Your Account Details:</h3>
+<table id="customers">
+    <tbody>
+      <tr>
+          <td>Your Email (Username): </td>
+          <td><%= current_customer.email %></td>
+      </tr>
+        <tr>
+          <td>Your Name: </td>
+          <td><%= current_customer.c_name %></td>
+      </tr>
+      <tr>
+          <td>Your Address: </td>
+          <td><%= current_customer.address %></td>
+      </tr>
+      <tr>
+          <td>Your Phone Number: </td>
+          <td><%= current_customer.c_phonenumber %></td>
+      </tr>
+       <tr>
+          <td>Your PayPal Email: </td>
+          <td><%= current_customer.c_paypal %></td>
+      </tr>
+      
+     </tbody>
+     
+</table>
+
+<br/>
+
+<center><%= link_to 'Edit Your Details',edit_customer_registration_path,
+:class => "w3-button w3-large w3-black w3-hover-yellow" %></center>
+  
+</div>
+
+<div class="w3-col m6 w3-center w3-padding-large">
+  
+  
+
+
+<h1 class="w3-center">Your Favourite Artworks:</h3>
+
+<% current_customer.favorites.each do |favorite| %>
+
+<div class="w3-col m4 w3-panel">
+<%= image_tag(favorite.artwork.artpic, :class => "itemholsIm") if favorite.artwork.artpic.attached? %><br/>
+<center><%= link_to favorite.artwork.title, favorite.artwork %></center>
+</div>
+<% end %>
+
+<% if current_customer.favorites.empty? %>
+Please add some favourites!
+<% end %>
+  
+  
+</div>
+
+
+

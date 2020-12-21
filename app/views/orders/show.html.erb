@@ -1,0 +1,125 @@
+<p id="notice"><%= notice %></p>
+
+<div class="w3-content w3-container w3-padding-64">
+  
+  <h1 class="w3-center">ORDER DETAILS</h1>
+
+
+   <% if @order.customer.email == @customer.email %>
+  
+    <p>
+  <strong>Order date:</strong>
+  <%= @order.order_date %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @order.customer.email %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @order.status %>
+</p>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>
+
+<br/><br/>
+
+
+  <h1>Items in this order are</h1>
+  <table id="customers">
+      
+      <tr>
+        <th>Order ID no.</th>
+        <th>Artwork ID no.</th>
+        <th>Artwork Title</th>
+        <th>Category</th>
+        <th>Price</th>
+       
+        
+    </tr>
+      
+      <% @total = 0 %>
+    <% @orderartworks.each do |orderartwork| %>
+    
+    
+     
+    <tr>
+      <td><%= orderartwork.order_id %></td>
+      <td><%= orderartwork.id %></td>
+      <td><%= orderartwork.title %></td>
+      <td><%= orderartwork.cat %></td>
+      <td><%= number_to_currency(orderartwork.price, :unit=>"€") %></td>
+    
+     
+      </tr>
+      <% @total += orderartwork.price %>
+      
+      
+      
+    <% end %>
+    
+    <tr>
+        <td colspan="3"></td>
+        <td>Order Total: </td>
+        <td><%= number_to_currency(@total, :unit=>"€") %></td>
+      </tr>
+    
+     <tr>
+       
+       <% if @total > 1000 %>
+       
+        <% shipping = 0 %>
+        
+      <% else %>
+      <% shipping = 50 %>
+      <% end %>
+      
+        <% @grandtotal = shipping + @total %>
+        <td>Shipping &euro;50 <br>(Free if total over €1,000</td>
+        <td>Total Payable: <%= number_to_currency(@grandtotal, :unit=>"€") %></td>
+        <td><!-- PAYPAL CODE HERE!!! -->
+        
+        <% if @order.status == "Pending" %>
+        
+        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+          
+          <input type="hidden" name="cmd" value="_xclick">
+          <input type="hidden" name="business" value="balance@artfox.com">
+          <input type="hidden" name="item_name" value="Artfox Order Number <%= @order.id %>">
+          <input type="hidden" name="currency_code" value="EUR">
+          <input type="hidden" name="amount" value="<%= @grandtotal %>">
+
+          <input type="hidden" name="return" value="https://0caca7c0c00f4427ad1ffe74b6d85ebc.vfs.cloud9.eu-west-1.amazonaws.com/paid/<%= @order.id %>" >
+          
+          <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" 
+          name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+          
+        </form>
+        
+        <% else %>
+        
+        Paid!
+        
+        <% end %>
+        
+        </td>
+        </tr>
+   </table> 
+   
+   
+      <% else %>
+   
+      <h1>You did not place this order</h1>
+      
+      <% end %>
+  
+  
+
+
+    
+    
+    
+</div>

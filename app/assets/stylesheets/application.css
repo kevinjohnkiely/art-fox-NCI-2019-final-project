@@ -1,0 +1,358 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+.itemholsIm {
+   /* width: 60%; */
+   width: 120px;
+    margin-left: auto; 
+    margin-right: auto; 
+    display: block;
+    
+}
+
+.artworkBigger {
+   width: 60%;
+    margin-left: auto; 
+    margin-right: auto; 
+    display: block;
+    
+}
+
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: gold;
+    color: white;
+}
+
+#itemsContainer h1 {
+   display: block;
+    color: #4CAF50;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    
+    
+}
+
+/*CSS from homepage file */
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+  height: 100%;
+  color: #777;
+  line-height: 1.8;
+}
+
+/* Create a Parallax Effect */
+.bgimg-1, .bgimg-2, .bgimg-3 {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* First image (Logo. Full height) */
+.bgimg-1 {
+  background-image: url('header.jpg');
+  min-height: 100%;
+}
+
+/* Second image (Portfolio) */
+.bgimg-2 {
+  background-image: url("/w3images/parallax2.jpg");
+  min-height: 400px;
+}
+
+/* Third image (Contact) */
+.bgimg-3 {
+  background-image: url("/w3images/parallax3.jpg");
+  min-height: 400px;
+}
+
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1600px) {
+  .bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: scroll;
+    min-height: 400px;
+  }
+}
+
+/* change nav bar color */
+#topNavbar {
+	/*background-color: rgba(255, 255, 255, 0.7);*/
+background-color: gold;
+}
+
+/* second nav bar */
+#secondNavbar {
+	background-color: black;
+}
+
+.secondNavbar{
+    background-color:green;
+    color: yellow;
+}
+
+
+.myCols {
+    background-color: whitesmoke;
+    padding: 10px;
+    border-bottom: 2px gold solid;
+    margin-bottom: 10px;
+}
+
+.myCols h2 {
+    
+    padding-left: 10px;
+}
+
+.myCols img {
+    border: 1px solid lightgrey;
+}
+
+.bottomButtons {
+   text-align: center;
+   margin-top: 10px;
+   padding-bottom: 10px;
+}
+
+.alert {
+    text-align: center;
+    font-size: large;
+    padding: 20px;
+    background-color: red;
+    color: white;
+}
+.notice {
+    text-align: center;
+    font-size: large;
+    padding: 20px;
+    background-color: green;
+    color: white;
+}
+
+.statusRed {
+    background-color: red;
+    color: white;
+    padding: 5px;
+    font-weight: bold;
+}
+.statusGreen {
+    background-color: green;
+    color: white;
+    padding: 5px;
+    font-weight: bold;
+}
+
+#userPanel {
+    background-color: #fdffb8;
+    padding: 20px;
+    margin-bottom: 50px;
+    border: 1px solid gold;
+}
+
+.smallerImgs {
+    width: 100%;
+    
+}
+
+.homeboxes1 {
+    min-height: 300px;
+    border: 5px solid white;
+    background-image: url(home-artist.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    /*background-attachment: fixed; */
+    background-size: cover;
+    background-color: #464646;
+
+}
+
+.homeboxes2 {
+    min-height: 300px;
+    border: 5px solid white;
+    background-image: url(home-customer.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    /*background-attachment: fixed; */
+    background-size: cover;
+    background-color: #464646;
+
+}
+
+.homeboxes1 h2, .homeboxes2 h2 {
+    color: gold;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 3px;
+}
+
+/* search box at top right hand corner */
+#mySearch {
+    color: gold;
+      display:none;
+      width: 70%;
+      margin: 0 auto;
+      padding: 50px 0;
+      text-align: center;
+      background-color: black;
+      margin-top: 20px;
+}
+
+#mySearch input {
+    margin-bottom: 15px;
+}
+
+.topcolors {
+    height: 6px;
+    background-color: #000;
+    position:fixed;
+    z-index:7;
+    width:100%;
+    top:0;
+}
+
+.w3-topkk {
+    position:fixed;
+    width:100%;
+    z-index:1;
+    top:6px;
+}
+
+.w3-buttonkk {
+    color: #000;
+    text-decoration: none;
+}
+
+.w3-buttonkk:hover{
+    color:#fff!important;
+    background-color:#000!important;
+    text-decoration: none;
+}
+
+.home {
+   width: 70%;
+   margin: 0 auto;
+   border-top: 1px dashed black;
+   margin-top: 50px;
+   margin-bottom: 50px;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.accordion:after {
+  content: '\02795'; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: #777;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+
+
+/* css for cart icon tooltip */
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  right: 105%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+#cartpanel {
+    background-color: black;
+    position: fixed;
+    top: 200px;
+    right: 0;
+    padding: 15px;
+    z-index: 400;
+}
+
+@media (max-width:600px){
+    #cartpanel {
+    background-color: black;
+    position: fixed;
+    top: 100px;
+    right: 0;
+    padding: 8px;
+    z-index: 400;
+}
+}

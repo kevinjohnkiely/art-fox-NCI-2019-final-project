@@ -1,0 +1,59 @@
+ <% if artist_signed_in? %>
+
+<center>
+
+<%= form_with(model: artwork, local: true) do |form| %>
+  <% if artwork.errors.any? %>
+    <div id="error_explanation">
+      <h1><%= pluralize(artwork.errors.count, "error") %> prohibited this artwork from being saved:</h1>
+
+      <ul>
+      <% artwork.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <table id="customers">
+    <tbody>
+      <tr>
+        <td><%= form.label "Artwork Title" %></td>
+        <td><%= form.text_field :title, :size=>"50", :required => true  %></td>
+      </tr>
+      <tr>
+        <td><%= form.label "Category" %></td>
+        <td><%= form.text_field :cat, :required => true %></td>
+      </tr>
+      <tr>
+        <td><%= form.label "Description" %></td>
+        <td><%= form.text_area :desc, :size=>"50", :required => true %></td>
+      </tr>
+      <tr>
+        <td><%= form.label "Price" %></td>
+        <td><%= form.text_field :price, :size=>"6", :required => true  %></td>
+      </tr>
+      
+      <tr>
+        <td><%= form.label "Add a picture" %></td>
+        <td><%= form.file_field :artpic %></td>
+      </tr>
+       <tr>
+        <td colspan="2"><center><%= form.submit "Submit Details" %></center></td>
+      </tr>
+    </tbody>
+    </table>
+<div style="visibility: hidden;">
+     
+        <%= form.label "Status" %>
+        <%= form.text_field :status, :size=>"6", :value=>"In Stock"  %>
+      
+      </div>
+
+<% end %>
+
+</center>
+
+<% else %>
+YOU DO NOT HAVE PERMISSION TO VIEW THIS PAGE<br><br>
+<% end %>

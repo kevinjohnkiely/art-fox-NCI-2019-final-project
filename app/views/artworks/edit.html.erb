@@ -1,0 +1,24 @@
+<h1 class="w3-center">Edit Artwork Details</h1>
+
+<% if artist_signed_in? %>
+
+<% if @artwork.artist.email == @artist.email %>
+
+<%= render 'form', artwork: @artwork %>
+
+<% else %>
+   
+      <h1>You do not have permission to edit this artwork!</h1>
+      
+      <% end %>
+
+<%= link_to 'Show', @artwork, :class => "w3-button w3-large w3-black w3-hover-yellow" %>
+<%= link_to 'Back', artworks_path,:class => "w3-button w3-large w3-black w3-hover-yellow" %>
+
+<% elsif customer_signed_in? %>
+<p>Customer cant do this!</p>
+<% else %>
+<p>Unregistered user cant do this!</p>
+
+
+<% end %>

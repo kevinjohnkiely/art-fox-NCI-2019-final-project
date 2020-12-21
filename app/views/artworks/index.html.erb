@@ -1,0 +1,59 @@
+<% provide(:title, "ARTWORK CATALOGUE") %>
+
+<p id="notice"><%= notice %></p>
+
+<% if @artworks.empty? %>
+<h1 class="w3-center">PORTFOLIO EMPTY! PLEASE ADD ARTWORKS</h1>
+<% else %>
+<h1 class="w3-center">BROWSE ARTWORKS</h1>
+<% end %>
+
+
+<% @artworks.each do |artwork| %>
+
+
+
+<div class="w3-col m4 w3-panel">
+        
+        <%= image_tag(artwork.artpic, :class => "itemholsIm") if artwork.artpic.attached? %>
+
+</div>
+
+<div class="w3-col m8 w3-panel">
+          <div class="myCols">
+            <strong>"<%= artwork.title %>"</strong> | <%= artwork.cat %> | 
+            Price: <%= number_to_currency(artwork.price, :unit => "€")  %> | 
+            
+            <% if artwork.status == "In Stock" %>
+            <span class="statusGreen"><%= artwork.status %></span>
+            <% else %>
+            <span class="statusRed"><%= artwork.status %></span>
+            <% end %>
+            
+            <br/>
+            <p class="w3-left"><%= artwork.desc %></p>
+            <p>
+            <%= link_to 'Show More >>', artwork, :class => "w3-button w3-large w3-black w3-hover-yellow", :role => "button" %>
+        <% if artist_signed_in? && artwork.status == "In Stock" %>
+        <%= link_to 'Edit', edit_artwork_path(artwork), :class => "w3-button w3-large w3-black w3-hover-yellow", :role => "button" %>
+        <%= link_to 'Delete Artwork', artwork, :class => "w3-button w3-large w3-black w3-hover-yellow", :role => "button", method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+        
+        
+        </p>
+      
+                </div>
+</div>
+      
+    <% end %>
+    
+    
+
+<div class="bottomButtons">   
+    
+  <% if artist_signed_in? %>
+    
+       <%= link_to 'Add Artwork',  new_artwork_path, :class => "w3-button w3-large w3-black w3-hover-yellow", :role => "button" %>
+       
+       <% end %>
+    </div>

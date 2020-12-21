@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<title><%= yield(:title) %> | ArtFox Online Art Gallery</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     <%= stylesheet_link_tag    'application', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+    
+    <%= stylesheet_link_tag    'application', 'https://fonts.googleapis.com/css?family=Lato', media: 'all', 'data-turbolinks-track': 'reload' %>
+    
+    
+    <%= stylesheet_link_tag    'w3', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
+</head>
+
+<body>
+  <% if customer_signed_in? %>
+<div id="cartpanel" class="tooltip"><a href="/cart/index"><i class="fa fa-shopping-cart" style="font-size:48px;color:yellow"></i></a>
+<span class="tooltiptext">VIEW CART</span></div>
+<% end %>
+
+<!-- Navbar (sit on top) -->
+<div class="topcolors"></div>
+<div class="w3-topkk">
+  <div class="w3-bar" id="topNavbar">
+    <a class="w3-bar-item w3-buttonkk w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <%= link_to "HOME",  "/", :class => "w3-bar-item w3-buttonkk" %>
+    <%= link_to "ABOUT US", aboutus_path, :class => "w3-bar-item w3-buttonkk w3-hide-small" %>
+    <%= link_to "FAQ", faq_path, :class => "w3-bar-item w3-buttonkk w3-hide-small" %>
+    <%= link_to "BROWSE ARTWORKS", "/artworks", :class => "w3-bar-item w3-buttonkk w3-hide-small" %>
+    <% if !artist_signed_in? && !customer_signed_in? %>
+    <%= link_to "REGISTER/LOGIN", "/#homepanel", :class => "w3-bar-item w3-buttonkk w3-hide-small" %>
+    <% end %>
+    <button onclick="searchFunction()" class="w3-bar-item w3-buttonkk w3-hide-small w3-right w3-hover-grey"><i class="fa fa-search"></i></button>
+    
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    
+    <a href="/aboutus" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT</a>
+    <a href="/faq" class="w3-bar-item w3-button" onclick="toggleFunction()">F.A.Q.</a>
+    <a href="/artworks" class="w3-bar-item w3-button" onclick="toggleFunction()">BROWSE ART</a>
+    <% if !artist_signed_in? && !customer_signed_in? %>
+    <a href="/#homepanel" class="w3-bar-item w3-button" onclick="toggleFunction()">REGISTER/LOGIN</a>
+    <% end %>
+     <button onclick="searchFunction()" class="w3-bar-item w3-buttonkk w3-right w3-hover-grey"><i class="fa fa-search"></i></button>
+    
+  </div>
+  <div id="mySearch"><%= render 'layouts/search' %></div>
+</div>
+
+
+
+<!-- First Parallax Image with Logo Text -->
+<div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
+  <div class="w3-display-middle" style="white-space:nowrap;">
+    <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">ARTFOX <span class="w3-hide-small">ONLINE</span> ART GALLERY</span>
+  </div>
+</div>
+
+<!-- MAIN PAGE CONTENT IN THIS SECTION -->
+<div class="w3-content w3-container w3-padding-64">
+  
+  
+  <% if artist_signed_in? || customer_signed_in? %>
+  
+  <div id ="userPanel">
+  
+  
+  
+  <!-- Second page menu -->
+  <% if artist_signed_in? %>
+                <h3 class="w3-left">Welcome Back, <%= current_artist.a_name %>! Choose your options below...</h3> 
+   <% elsif customer_signed_in? %>
+   <h3 class="w3-left">Welcome Back, <%= current_customer.c_name %>! Choose your options below...</h3> 
+   <% end %>
+   
+  <div class="w3-bar">
+     <!-- This code deals with Artist -->
+        <% if artist_signed_in? %>
+                 
+                 <%= link_to "Your Artist Account", "/artist-account", :class => "w3-bar-item w3-button w3-yellow w3-hover-black" %>
+                 <%= link_to "View Your Art Portfolio", "/artworks", :class => "w3-bar-item w3-button w3-yellow w3-hover-black"  %>
+                <%= link_to 'Add Artwork',  new_artwork_path, :class => "w3-bar-item w3-button w3-yellow w3-hover-black" %>
+
+                 <%= link_to 'Sign out', destroy_artist_session_path, :class => "w3-bar-item w3-button w3-yellow w3-hover-black", :method => :delete %>
+          <!-- This code deals with Customer -->
+          <% elsif customer_signed_in? %>
+                 
+                 
+                 <%= link_to "Your Customer Account", "/customer-account", :class => "w3-bar-item w3-button w3-yellow w3-hover-black" %>
+                 <%= link_to "View Your Previous Orders", orders_path, :class => "w3-bar-item w3-button w3-yellow w3-hover-black"  %>
+                 <%= link_to "View Cart", "cart/index", :class => "w3-bar-item w3-button w3-black w3-hover-yellw"  %>
+                 <%= link_to 'Sign out', destroy_customer_session_path, :class => "w3-bar-item w3-button w3-yellow w3-hover-black", :method => :delete %>
+             
+          <% end %>
+    
+  </div>
+  
+ 
+
+</div>
+
+<% end %>
+
+ <% if flash[:notice] %>
+          <p class="notice"><%= flash[:notice] %></p>
+ <% end %>
+ <% if flash[:alert] %>
+          <p class="alert"><%= flash[:alert] %></p>
+ <% end %>
+  
+  <%= yield %>
+  
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <div class="w3-xlarge w3-section">
+    ARTFOX ONLINE ART GALLERY 2019
+  </div>
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-yellow">w3.css</a></p>
+</footer>
+ 
+<script>
+function searchFunction() {
+  var x = document.getElementById("mySearch");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>
+
+
+
+</body>
+</html>
+
+      
+      
+   
+
+    
+
+
